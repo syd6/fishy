@@ -71,7 +71,7 @@ function fish(){
 }
 
 function draw() {
-    background(img);
+    background(water);
     //background(125);
     noStroke();
     fill(255);
