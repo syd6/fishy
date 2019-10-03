@@ -72,8 +72,7 @@ function draw() {
     background(water);
     //background(125);
     noStroke();
-    //fill(255);
-    fill(fishobject);
+    fill(255);
     fish();
     // if it hits the bottom of canvas then go back  up
 }
