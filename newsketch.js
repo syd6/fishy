@@ -12,12 +12,14 @@ function setup() {
 }
 
 function draw(){
-    background(50, 89, 100);
+    //background(50, 89, 100);
 
     for (x=0;x<fishArray.length;x++){
         fishArray[x].swimInBound();
         fishArray[x].display();
     }
+    fill(255,255,255,10)
+    rect(0,0,width, height)
     /*fish.swimInBound();
     fish.display();
     fish2.swimInBound();
@@ -51,6 +53,7 @@ class Fish {
         }
         //console.log(millis())
         if (lastTimeTracked <= millis() - 2500){
+            console.log('timepast')
             this.angle -= 70;
             this.swim(this.angle);
             lastTimeTracked = millis(); //update last time 
@@ -59,6 +62,8 @@ class Fish {
     }
 
     display() {
+        noStroke();
+        fill(255, 152, 84)
         ellipse(this.x, this.y, 20, 20);
     }
 }
