@@ -1,28 +1,38 @@
-let water;
+/* let water;
 let fishobject;
 
 function preload() {
     water = loadImage('water.png');
     fishobject = loadImage('fish.png');
-}
+} */
 
 function setup() {
-    createCanvas(1415, 730);
-    image(water, 0, 0);
-    image(fishobject, 0, 0);
+    createCanvas(600, 600);
+    //image(water, 0, 0);
+    //image(fishobject, 0, 0);
+    spr = createSprite(
+        width/2, height/2, 40, 40);
 }
 
 //u want the movements to be random 
 
-const screenW = 1415;
-const screenH = 730;
+const screenW = 600;
+const screenH = 600;
 
-var posX = 200;
-var posY = 200;
+var posX = 300;
+var posY = 300;
 
 var angle = Math.random()*360;
 var lastTime = 0; //gets the current time
 //travel no more than 10 pix in any direction 
+
+
+function fish(){
+    ellipse(posX, posY, 20, 20);
+    direction(posX, posY); //moves the object
+    this.velocity = createVector(0,0);
+    this.swimAngle = angle;
+}
 
 
 function newCoords(ang){
@@ -42,11 +52,9 @@ function direction(currentx,currenty){
         //change direction
         angle -= 180;
         newCoords(angle)
-        console.log("switch!")
     }
     //console.log(millis())
     if (lastTime <= millis() - 2500){
-        console.log("hello")
         angle -= 70;
         newCoords(angle)
         lastTime = millis(); //update last time 
@@ -54,23 +62,21 @@ function direction(currentx,currenty){
     newCoords(angle)
 }
 
-/* not working*/
+// not working
 function swimTo(mousex, mousey){
-    var slope = (posX-mousex)/(posY-mousey)
-    var newangle = atan(slope)
-    posX = posX+(mousex-posX)*cos(newangle)+random(-2,2)
-    posY = posY+(mousey-posY)*cos(newangle)
+    //var slope = (posX-mousex)/(posY-mousey)
+    var newangle = atan2(mousex-posX, mousey-posY)
+    posX = posX+3*cos(newangle)+random(-2,2)
+    posY = posY+3*sin(newangle)
 }
 
 
-function fish(){
-    ellipse(posX, posY, 20, 20)
-    direction(posX, posY); //moves the object
-}
+
+
 
 function draw() {
-    background(water);
-    //background(125);
+    //background(water);
+    background(125);
     noStroke();
     fill(255);
     fish();
@@ -85,3 +91,4 @@ function mouseClicked() {
 } 
 
  
+//use this for animation https://creative-coding.decontextualize.com/making-games-with-p5-play/
