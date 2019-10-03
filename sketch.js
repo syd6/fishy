@@ -10,7 +10,6 @@ function setup() {
     createCanvas(1415, 730);
     image(water, 0, 0);
     image(fishobject, 0, 0);
-    
 }
 
 //u want the movements to be random 
@@ -67,14 +66,14 @@ function swimTo(mousex, mousey){
 function fish(){
     ellipse(posX, posY, 20, 20)
     direction(posX, posY); //moves the object
-    
 }
 
 function draw() {
     background(water);
     //background(125);
     noStroke();
-    fill(255);
+    //fill(255);
+    fill(fishobject);
     fish();
     // if it hits the bottom of canvas then go back  up
 }
