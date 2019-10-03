@@ -1,12 +1,16 @@
-let img;
+let water;
+let fish;
 
 function preload() {
-    img = loadImage('water.png');
+    water = loadImage('water.png');
+    fish = loadImage('fish.png');
 }
 
 function setup() {
     createCanvas(1415, 730);
-    image(img, 0, 0);
+    image(water, 0, 0);
+    image(fish, 0, 0);
+    
 }
 
 //u want the movements to be random 
@@ -35,7 +39,7 @@ function newCoords(ang){
 //what moves the ball
 function direction(currentx,currenty){
     //if circle is getting close to border
-    if (currentx > screenW-50 || currenty > screenH-50 || currentx < 50 || currenty < 50){
+    if (currentx >= screenW-50 || currenty >= screenH-50 || currentx <= 50 || currenty <= 50){
         //change direction
         angle -= 180;
         newCoords(angle)
@@ -51,32 +55,33 @@ function direction(currentx,currenty){
     newCoords(angle)
 }
 
+/* not working*/
+function swimTo(mousex, mousey){
+    var slope = (posX-mousex)/(posY-mousey)
+    var newangle = atan(slope)
+    posX = posX+(mousex-posX)*cos(newangle)+random(-2,2)
+    posY = posY+(mousey-posY)*cos(newangle)
+}
+
 
 function fish(){
-    fill(8,59,12);
-    ellipse(posX+29,posY,20,25);
-    fill(35,150,44);
-    ellipse(posX,posY,50,30);
-    fill("white");
-    ellipse(posX-10,posY-5,10);
-    fill("grey");
-    ellipse(posX-13,posY-5,4);
-    fill(62,66,63,90);
+    ellipse(posX, posY, 20, 20)
+    direction(posX, posY); //moves the object
+    
 }
 
 function draw() {
     background(img);
+    //background(125);
     noStroke();
     fill(255);
-    //fish();
-    ellipse(posX, posY, 10, 10)
-    //image(img, posX, posY, 20, 20);
-    direction(posX, posY); //moves the object
+    fish();
     // if it hits the bottom of canvas then go back  up
 }
 
+//https://github.com/processing/p5.js/wiki/Beyond-the-canvas
 function mouseClicked() {
-    ellipse(mouseX+30, mouseY+30, 20, 20)
+    swimTo(mouseX, mouseY)
     // prevent default
     return false;
 } 
