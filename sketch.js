@@ -1,15 +1,15 @@
 let water;
-let fish;
+let fishobject;
 
 function preload() {
     water = loadImage('water.png');
-    fish = loadImage('fish.png');
+    fishobject = loadImage('fish.png');
 }
 
 function setup() {
     createCanvas(1415, 730);
     image(water, 0, 0);
-    image(fish, 0, 0);
+    image(fishobject, 0, 0);
     
 }
 
